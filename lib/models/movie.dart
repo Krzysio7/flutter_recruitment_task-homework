@@ -22,8 +22,8 @@ class Movie {
 extension VoteRateSort on List<Movie> {
   sortByVoteAverageDesc() {
     sort(
-      (a, b) => a.voteAverage.compareTo(
-        b.voteAverage,
+      (a, b) => b.voteAverage.compareTo(
+        a.voteAverage,
       ),
     );
   }
