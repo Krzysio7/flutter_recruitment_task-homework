@@ -18,3 +18,13 @@ class Movie {
 
   Map<String, dynamic> toJson() => _$MovieToJson(this);
 }
+
+extension VoteRateSort on List<Movie> {
+  sortByVoteAverageDesc() {
+    sort(
+      (a, b) => a.voteAverage.compareTo(
+        b.voteAverage,
+      ),
+    );
+  }
+}

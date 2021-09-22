@@ -47,6 +47,7 @@ class _MovieListPage extends State<MovieListPage> {
             child: Text(snapshot.error.toString()),
           );
         } else {
+          snapshot.data?.sortByVoteAverageDesc();
           return _buildMoviesList(snapshot.data ?? []);
         }
       });
