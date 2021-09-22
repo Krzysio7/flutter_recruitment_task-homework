@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recruitment_task/pages/movie_details/move_detail.dart';
 
 class MovieDetailsPage extends StatefulWidget {
+  final int movieId;
+
+  const MovieDetailsPage({required this.movieId});
+
   @override
   _MovieDetailsPageState createState() => _MovieDetailsPageState();
 }

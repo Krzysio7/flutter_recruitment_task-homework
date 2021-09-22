@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recruitment_task/models/movie.dart';
 import 'package:flutter_recruitment_task/pages/movie_list/movie_card.dart';
 import 'package:flutter_recruitment_task/pages/movie_list/search_box.dart';
+import 'package:flutter_recruitment_task/routing/router.gr.dart';
 import 'package:flutter_recruitment_task/services/api_service.dart';
 
 class MovieListPage extends StatefulWidget {
@@ -60,7 +62,11 @@ class _MovieListPage extends State<MovieListPage> {
         itemBuilder: (context, index) => MovieCard(
           title: movies[index].title,
           rating: '${(movies[index].voteAverage * 10).toInt()}%',
-          onTap: () {},
+          onTap: () => context.router.push(
+            MovieDetailsPageRoute(
+              movieId: movies[index].id,
+            ),
+          ),
         ),
         itemCount: movies.length,
       );
