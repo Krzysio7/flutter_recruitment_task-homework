@@ -27,7 +27,8 @@ class AppRouter extends _i1.RootStackRouter {
       final args = routeData.argsAs<MovieDetailsPageRouteArgs>();
       return _i1.AdaptivePage<dynamic>(
           routeData: routeData,
-          child: _i4.MovieDetailsPage(movieId: args.movieId));
+          child:
+              _i4.MovieDetailsPage(movieId: args.movieId, title: args.title));
     },
     TwoButtonsPageRoute.name: (routeData) {
       return _i1.AdaptivePage<dynamic>(
@@ -52,18 +53,20 @@ class MovieListPageRoute extends _i1.PageRouteInfo<void> {
 
 class MovieDetailsPageRoute
     extends _i1.PageRouteInfo<MovieDetailsPageRouteArgs> {
-  MovieDetailsPageRoute({required int movieId})
+  MovieDetailsPageRoute({required int movieId, required String title})
       : super(name,
             path: '/movie-details-page',
-            args: MovieDetailsPageRouteArgs(movieId: movieId));
+            args: MovieDetailsPageRouteArgs(movieId: movieId, title: title));
 
   static const String name = 'MovieDetailsPageRoute';
 }
 
 class MovieDetailsPageRouteArgs {
-  const MovieDetailsPageRouteArgs({required this.movieId});
+  const MovieDetailsPageRouteArgs({required this.movieId, required this.title});
 
   final int movieId;
+
+  final String title;
 }
 
 class TwoButtonsPageRoute extends _i1.PageRouteInfo<void> {

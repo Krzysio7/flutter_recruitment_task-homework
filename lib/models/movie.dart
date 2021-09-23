@@ -4,7 +4,7 @@ part 'movie.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Movie {
-  final String title;
+  final String? title;
   final double voteAverage;
   final int id;
 

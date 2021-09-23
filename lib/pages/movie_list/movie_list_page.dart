@@ -12,9 +12,7 @@ class MovieListPage extends StatefulWidget {
 }
 
 class _MovieListPage extends State<MovieListPage> {
-  final apiService = ApiService();
-
-  Future<List<Movie>> _movieList = Future.value([]);
+  Future<List<Movie>?> _movieList = Future.value([]);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -37,7 +35,7 @@ class _MovieListPage extends State<MovieListPage> {
         ),
       );
 
-  Widget _buildContent() => FutureBuilder<List<Movie>>(
+  Widget _buildContent() => FutureBuilder<List<Movie>?>(
       future: _movieList,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -59,22 +57,27 @@ class _MovieListPage extends State<MovieListPage> {
           height: 1.0,
           color: Colors.grey.shade300,
         ),
-        itemBuilder: (context, index) => MovieCard(
-          title: movies[index].title,
-          rating: '${(movies[index].voteAverage * 10).toInt()}%',
-          onTap: () => context.router.push(
-            MovieDetailsPageRoute(
-              movieId: movies[index].id,
+        itemBuilder: (context, index) {
+          final movie = movies[index];
+
+          return MovieCard(
+            title: movie.title ?? '',
+            rating: '${(movie.voteAverage * 10).toInt()}%',
+            onTap: () => context.router.push(
+              MovieDetailsPageRoute(
+                movieId: movie.id,
+                title: movie.title ?? 'Undefined',
+              ),
             ),
-          ),
-        ),
+          );
+        },
         itemCount: movies.length,
       );
 
   void _onSearchBoxSubmitted(String text) {
     setState(() {
       if (text.isNotEmpty) {
-        _movieList = apiService.searchMovies(text);
+        _movieList = ApiService.searchMovies(text);
       } else {
         _movieList = Future.value([]);
       }
