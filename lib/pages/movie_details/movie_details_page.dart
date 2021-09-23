@@ -51,7 +51,7 @@ class DetailsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MovieDetail> _details = _buildDetailsList();
+    final List<MovieDetail> _details = _buildDetailsList();
 
     return ListView.separated(
       separatorBuilder: (context, index) => Container(
@@ -80,7 +80,7 @@ class DetailsList extends StatelessWidget {
   }
 
   List<MovieDetail> _buildDetailsList() {
-    final _details = [
+    return [
       MovieDetail(
           title: 'Budget', content: '\$${details?.budget.toString() ?? ''}'),
       MovieDetail(
@@ -89,7 +89,6 @@ class DetailsList extends StatelessWidget {
           title: 'Should I watch it today?',
           content: _shouldIWatchIt() ? 'Yes' : 'No'),
     ];
-    return _details;
   }
 
   bool _shouldIWatchIt() {
