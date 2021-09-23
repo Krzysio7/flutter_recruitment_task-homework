@@ -86,20 +86,20 @@ class DetailsList extends StatelessWidget {
       MovieDetail(
           title: 'Revenue', content: '\$${details?.revenue.toString() ?? ''}'),
       MovieDetail(
-          title: 'Should I watch it today?', content: _shouldIWatchIt()),
+          title: 'Should I watch it today?',
+          content: _shouldIWatchIt() ? 'Yes' : 'No'),
     ];
     return _details;
   }
 
-  String _shouldIWatchIt() {
+  bool _shouldIWatchIt() {
     if (details == null) {
-      return 'No';
+      return false;
     } else {
-      print(DateTime.now().weekday);
       return DateTime.now().weekday == DateTime.sunday &&
               details!.revenue - details!.budget > 1000000
-          ? 'Yes'
-          : 'No';
+          ? true
+          : false;
     }
   }
 }
